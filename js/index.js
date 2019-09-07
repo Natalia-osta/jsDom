@@ -52,17 +52,32 @@ for (let i = 0; i < 10; i++) {
     const opers = document.querySelectorAll('.calc .opers button');
     const display = document.querySelector('.calc .display');
     const equal = document.querySelector('.calc .eq');
+
+    let trigger = false;
+    let deltaNumber;
+    let deltaArr = [];
+    let deltaOperation;
+    let startData = 0;
+
+
+
     nums.forEach( buttonNum => buttonNum.addEventListener('click', numPressed) );
     function numPressed(ev) {
         const num = ev.target.innerText;
         display.value += num;
+        deltaNumber = +num;
     }
     opers.forEach( buttonOper => buttonOper.addEventListener('click', operPressed) );
     function operPressed(ev) {
+        startData = deltaNumber;
         const oper = ev.target.innerText;
-        display.value += oper;
+        display.value = oper;
+        deltaOperation = oper;
     }
-    equal.addEventListener('click', () => display.value = eval(display.value) );
+    equal.addEventListener('click', calcOpereting );
+    function calcOpereting(ev) {
 
+    }
 
 })();
+
